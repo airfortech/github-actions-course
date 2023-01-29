@@ -1,0 +1,20 @@
+# nazwa workflow/akcji
+name: First Workflow
+
+# definiowanie jak akcja ma być odpalana
+on:
+  # pozwala odpalanić ręcznie
+  workflow_dispatch
+
+jobs:
+  # nazwa job
+  first-job:
+    # nazwa środowiska uruchomieniowego
+    runs-on: ubuntu-latest
+
+    # steps muszą być odzielone myślnikiem
+    steps:
+      - name: Print greeting
+        run: echo "Hello World!"
+      - name: Print goodbye
+        run: echo "Done - bye!"
