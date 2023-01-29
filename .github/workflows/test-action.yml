@@ -1,0 +1,32 @@
+name: Test React Project
+
+on:
+  # odpala się podczas pushowania nowego commita lub taga
+  push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # pobranie kodu z repozytorium
+      - name: get code
+        # używa akcji, np. z marketplace
+        uses: actions/checkout@v3
+        # opcjonalna konfiguracja
+        with:
+
+      # opcjonalna instalacja nowszej wersji noda
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # instalacja paczek
+      - name: Install packages
+        # instalacja paczek z package-lock.json
+        run: npm ci
+
+      # uruchomienie testów
+      - name: Run tests
+        run: npm test
