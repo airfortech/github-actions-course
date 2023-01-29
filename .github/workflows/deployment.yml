@@ -1,11 +1,11 @@
-name: Test React Project
+name: Deploy React Project
 
 on:
   # odpala się podczas pushowania nowego commita lub taga
   workflow_dispatch
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,10 +21,12 @@ jobs:
           node-version: 18
 
       # instalacja paczek
-      - name: Install packages
+      - name: install packages
         # instalacja paczek z package-lock.json
         run: npm ci
-
-      # uruchomienie testów
-      - name: Run tests
-        run: npm test
+      # budowanie projektu
+      - name: build project
+        run: npm run build
+      # Deploy project
+      - name: deploy project
+        run: echo "deploying..."

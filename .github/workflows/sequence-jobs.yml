@@ -1,0 +1,21 @@
+name: sequence jobs
+
+on: workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job1"
+  job2:
+    # czeka na zakończenie job1
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job2"
+  job3:
+    # czeka na zakończenie job1 i job2
+    needs: [job1, job2]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job2"
