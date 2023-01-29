@@ -1,0 +1,10 @@
+name: multiple triggers
+
+# wiele triggerów
+on: [workflow_dispatch, push]
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job"

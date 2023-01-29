@@ -18,4 +18,4 @@ jobs:
     needs: [job1, job2]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Job2"
+      - run: echo "Job3"
