@@ -11,7 +11,9 @@ jobs:
         run: echo "${{ toJSON(github) }}"
       - name: repository owner
         # dostęp do metadanych oferowanych przez githuba z użyciem github expression
-        run: echo "repository owner ${{ github.repository_owner }}"
+        run: |
+          echo "repository owner: ${{ github.repository_owner }}"
       - name: repository url
         # dostęp do metadanych oferowanych przez githuba z użyciem github expression
-        run: echo "repository url  ${{ github.repositoryUrl }}"
+        run: |
+          echo "repository url:  ${{ github.repositoryUrl }}"
