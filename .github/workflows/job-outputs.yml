@@ -1,0 +1,50 @@
+name: job outputs
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      # dowolna nazwa
+      # dostęp do kroku z nazwą zdefiniowaną przez id
+      # dostęp do :":set-output name=script-file" w kroku o id "publish"
+      script-file: ${{ steps.publish.outputs.script-file }}
+
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install packages
+        run: npm ci
+      - name: build project
+        run: npm run build
+      - name: publish JS filename
+        # dowolna nazwa id
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo "::set-output name=script-file::{}" ";"
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: get artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: output content
+        run: ls
+      - name: output file
+        # dostęp do zmiennej przechowanej w "script-file" w job "build"
+        run: echo "${{ needs.build.outputs.script-file }}"
+      - name: deploy project
+        run: echo "deploying..."
