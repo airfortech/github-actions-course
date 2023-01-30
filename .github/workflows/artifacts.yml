@@ -25,6 +25,7 @@ jobs:
           path: |
             dist
             package.json
+            !path/**/*.tmp
 
   deploy:
     needs: build
@@ -33,7 +34,7 @@ jobs:
     steps:
       # pobiera pliki "dist-files" i rozpakowuje je
       - name: get artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: dist-files
       - name: output content
