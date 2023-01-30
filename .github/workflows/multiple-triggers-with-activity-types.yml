@@ -2,7 +2,7 @@ name: multiple triggers - activity types
 
 # wiele triggerów
 on:
-  workflow dispatch:
+  workflow_dispatch:
   pull_request:
     types:
       - opened
