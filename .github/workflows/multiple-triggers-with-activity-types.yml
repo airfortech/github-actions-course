@@ -1,0 +1,15 @@
+name: multiple triggers - activity types
+
+# wiele triggerów
+on:
+  workflow dispatch:
+  pull_request:
+    types:
+      - opened
+      - edited
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job"
