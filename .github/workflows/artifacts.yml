@@ -22,10 +22,7 @@ jobs:
         with:
           # własna nazwa, która pojawi się jako plik zip to wykorzystania lub pobrania
           name: dist-files
-          path: |
-            dist
-            package.json
-            !path/**/*.tmp
+          path: dist
 
   deploy:
     needs: build
