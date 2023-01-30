@@ -1,7 +1,7 @@
 name: filters
 
 on:
-  workflow dispatch:
+  workflow_dispatch:
   push:
     # triggerowanie pushowania wybranych branchy
     branches:
