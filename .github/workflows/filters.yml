@@ -13,10 +13,6 @@ on:
     # każda zmiana w "src"
     paths:
       - "src/**"
-    # każda zmiana poza plikami w ".github/workflows"
-    paths-ignore:
-      - ".github/workflows/*"
-
 jobs:
   job:
     runs-on: ubuntu-latest
