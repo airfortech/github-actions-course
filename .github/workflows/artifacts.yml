@@ -25,7 +25,6 @@ jobs:
           path: |
             dist
             package.json
-            !path/**/*.tmp
 
   deploy:
     needs: build
