@@ -1,0 +1,43 @@
+name: Artifacts
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install packages
+        run: npm ci
+      - name: build project
+        run: npm run build
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          # własna nazwa, która pojawi się jako plik zip to wykorzystania lub pobrania
+          name: dist-files
+          path: |
+            dist
+            package.json
+            !path/**/*.tmp
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      # pobiera pliki "dist-files" i rozpakowuje je
+      - name: get artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+      - name: output content
+        run: ls
+      - name: deploy project
+        run: echo "deploying..."
