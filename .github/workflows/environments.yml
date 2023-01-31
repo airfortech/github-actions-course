@@ -11,6 +11,7 @@ jobs:
   test:
     # przekazanie zmiennych środowiskowych
     # dostępne dla job "test"
+    environment: test
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.15pwqcc.mongodb.net
       MONGODB_USERNAME: maximilian
