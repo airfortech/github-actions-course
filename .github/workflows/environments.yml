@@ -42,7 +42,7 @@ jobs:
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
           echo "MONGODB_PASSWORD: ${{ env.MONGODB_PASSWORD }}"
-          echo "MONGODB_PASSWORD: ${{ env.echo "MONGODB_PASSWORD: ${{ env.MONGODB_PASSWORD }}VARIABLE }}"
+          echo "MONGODB_VARIABLE:  ${{ env.VARIABLE }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
