@@ -9,9 +9,10 @@ env:
 
 jobs:
   test:
-    # przekazanie zmiennych środowiskowych
-    # dostępne dla job "test"
+    # zmienne i sekrety z "test" będą nadpisywały globalne dla repozytorium
     environment: test
+    # dostępne dla job "test"
+    # przekazanie zmiennych środowiskowych
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.15pwqcc.mongodb.net
       MONGODB_USERNAME: maximilian
