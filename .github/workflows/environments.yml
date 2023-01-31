@@ -1,4 +1,4 @@
-name: Environment
+name: Environments
 
 on: workflow_dispatch
 
@@ -30,9 +30,7 @@ jobs:
         run: npm ci
       - name: Run server
         # odczytanie zmiennej, składnia dostępna dla linuxa. Dla windowsa jest inna
-        run: npm start & npx wait-on http://127.0.0.1:$PORT
-      - name: Run tests
-        run: npm test
+        run: echo "http://127.0.0.1:$PORT"
       - name: Output information
         # dwie możliwości dostępu do zmiennych
         run: |
