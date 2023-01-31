@@ -13,13 +13,12 @@ jobs:
         with:
           path: ~/.npm
           # używany do wykorzystania cachu później
+          # hashFiles('**/package-lock.json') musi być zapisane w ''
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Test code
         run: npm run test
-      - name: check node version
-        run: node -v
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -35,5 +34,3 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
-      - name: check node version
-        run: node -v
