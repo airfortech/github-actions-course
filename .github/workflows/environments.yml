@@ -15,6 +15,7 @@ jobs:
       MONGODB_CLUSTER_ADDRESS: cluster0.15pwqcc.mongodb.net
       MONGODB_USERNAME: maximilian
       # przypisanie zmiennej zdefiniowanej jako secret w repozytorium
+      # zmienna będzie listowana jako "***"
       MONGODB_PASSWORD: ${{secrets.MONGODB_PASSWORD}}
       PORT: 8080
     environment: testing
@@ -37,6 +38,7 @@ jobs:
         run: |
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+          echo "MONGODB_PASSWORD: ${{ env.MONGODB_PASSWORD }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
