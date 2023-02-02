@@ -1,0 +1,34 @@
+name: Matrix Demo
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    # zapobiega anulowaniu wykonaniu pozostałych kombinacji, jeśli któraś wcześniejsza zakończy się niepowodzeniem
+    continue-on-error: true
+    # pozwala na uruchomienie tego samego job dla różnych konfiguracji, w poniższym przypadku 6 konfiguracji
+    strategy:
+      matrix:
+        node-version: [12, 14, 16]
+        operating-system: [ubuntu-latest, windows-latest]
+        # dodanie do kombinacji kolejnej konkretnej
+        include:
+          - node-version: 18
+            operating-system: ubuntu-latest
+        # usunięcie z kombinacji konkretnej
+        exclude:
+          - node-version: 12
+            operating-system: windows-latest
+    runs-on: ${{ matrix.operating-system }}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build website
+        id: build-website
+        run: npm run build
