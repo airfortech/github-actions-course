@@ -1,0 +1,11 @@
+name: reusable workflow
+
+# musi być wywoływalne przez inne workflows poprzez "workflow_call"
+on: workflow_call
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: output information
+        run: echo "deploying & uploading..."
