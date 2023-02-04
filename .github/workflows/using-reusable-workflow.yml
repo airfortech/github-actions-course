@@ -29,4 +29,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print deploy output
+        # zwrócenie outputa wygenerowanego przez job "deploy" pod kluczem "result"
         run: echo "${{ needs.deploy.outputs.result }}"
