@@ -11,4 +11,4 @@ jobs:
   deploy:
     needs: build
     # ścieżka do pliku workflow relatywna do roota projektu
-    uses: ./github/workflows/reusable-workflow.yml
+    uses: ./.github/workflows/reusable-workflow.yml
