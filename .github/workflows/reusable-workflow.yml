@@ -13,9 +13,15 @@ on:
         # domyślna wartość argumentu
         default: dist
         type: string
+    outputs:
+      result:
+        description: The result of the deployment
+        value: ${{ jobs.deploy.outputs.outcome}}
 
 jobs:
   deploy:
+    outputs:
+      outcome: $${{ steps.set-result.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: get artifacts
@@ -27,3 +33,5 @@ jobs:
         run: ls
       - name: output information
         run: echo "deploying & uploading..."
+      - name: set result outputs
+        run: echo "::set-outputs name=step-result::success"

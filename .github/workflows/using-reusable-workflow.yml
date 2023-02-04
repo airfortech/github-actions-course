@@ -24,3 +24,9 @@ jobs:
     with:
       # przekazanie wartości argumentu zdefiniowanego w "reusable-workflow.yml"
       artifact-name: dist-files
+  report:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: print deploy output
+        run: echo "${{ needs.deploy.outputs.result }}"
