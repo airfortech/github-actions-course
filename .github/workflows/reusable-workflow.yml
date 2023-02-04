@@ -22,7 +22,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           # przekazanie wartości argumentu workflow
-          name: $ {{ inputs.artifact-name }}
+          name: ${{ inputs.artifact-name }}
       - name: list files
         run: ls
       - name: output information
