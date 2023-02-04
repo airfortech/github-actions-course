@@ -1,11 +1,29 @@
 name: reusable workflow
 
 # musi być wywoływalne przez inne workflows poprzez "workflow_call"
-on: workflow_call
+on:
+  workflow_call:
+    # dodaje możliwość przekazania argumentu do wywoływalnego workflow
+    inputs:
+      # dowolna nazwa
+      artifact-name:
+        description: The name of the deployable artifact files
+        # ustawienie czy argument jest wymagany
+        required: false
+        # domyślna wartość argumentu
+        default: dist
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: get artifacts
+        uses: actions/download-artifact@v3
+        with:
+          # przekazanie wartości argumentu workflow
+          name: $ {{ inputs.artifact-name }}
+      - name: list files
+        run: ls
       - name: output information
         run: echo "deploying & uploading..."
