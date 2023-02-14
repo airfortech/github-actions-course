@@ -1,8 +1,6 @@
 name: Deploy React Project
 
-on:
-  # odpala się podczas pushowania nowego commita lub taga
-  workflow_dispatch
+on: workflow_dispatch
 
 jobs:
   deploy:
