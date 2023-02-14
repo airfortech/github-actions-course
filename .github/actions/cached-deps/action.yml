@@ -2,17 +2,29 @@
 name: Get & Cache Dependencies
 # pojawi się jako opis w marketplace jeśli zostanie opublikowana
 description: Get dependencies via npm and cache them
+# opcjonalne argumenty
+inputs:
+  # dowolna nazwa
+  caching:
+    description: Whether to cache dependencies or not
+    # argument wymagany lub nie, jeśli false, trzeba obsłużyć możliwość wystąpienia false
+    required: false
+    # domyślna wartość (obsługa braku argumentu)
+    default: "true"
 runs:
   using: composite
   steps:
     - name: Cache dependencies
+      # pominięcie kroku jeśli argument caching == false
+      if: inputs.caching == "true"
       id: cache
       uses: actions/cache@v3
       with:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
+      # pominięcie kroku jeśli nie ma cachu lub caching == false
+      if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != "true"
       run: npm ci
       # wymagany klucz dla komendy run
       shell: bash
