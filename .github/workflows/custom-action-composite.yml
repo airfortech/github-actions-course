@@ -1,4 +1,4 @@
-name: Deployment
+name: composite custom actions
 
 on: workflow_dispatch
 

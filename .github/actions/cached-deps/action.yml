@@ -1,9 +1,9 @@
 # pojawi się jako nazwa w marketplace jeśli zostanie opublikowana
-name: Get & Cache Dependencies
+name: "Get & Cache Dependencies"
 # pojawi się jako opis w marketplace jeśli zostanie opublikowana
-description: Get dependencies via npm and cache them
+description: "Get dependencies via npm and cache them"
 runs:
-  using: composite
+  using: "composite"
   steps:
     - name: Cache dependencies
         id: cache
