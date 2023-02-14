@@ -11,11 +11,16 @@ inputs:
     required: false
     # domyślna wartość (obsługa braku argumentu)
     default: "true"
+outputs:
+  used-cache:
+    description: Whether cache was used
+    value: ${{ steps.install.outputs.cache }}
 runs:
   using: composite
   steps:
     - name: Cache dependencies
       # pominięcie kroku jeśli argument caching == false
+      # warunek musi być w '', nie w ""
       if: inputs.caching == 'true'
       id: cache
       uses: actions/cache@v3
@@ -23,8 +28,11 @@ runs:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
+      id: install
       # pominięcie kroku jeśli nie ma cachu lub caching == false
       if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
-      run: npm ci
+      run: |
+        npm ci
+        echo "::set-output name=cache::'${{ inputs.caching }}'"
       # wymagany klucz dla komendy run
       shell: bash
