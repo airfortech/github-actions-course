@@ -16,7 +16,7 @@ runs:
   steps:
     - name: Cache dependencies
       # pominięcie kroku jeśli argument caching == false
-      if: inputs.caching == "true"
+      if: inputs.caching == 'true'
       id: cache
       uses: actions/cache@v3
       with:
@@ -24,7 +24,7 @@ runs:
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
       # pominięcie kroku jeśli nie ma cachu lub caching == false
-      if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != "true"
+      if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
       run: npm ci
       # wymagany klucz dla komendy run
       shell: bash
