@@ -1,0 +1,11 @@
+name: JavaScript Action
+description: Deploy a static website via AWS S3
+runs:
+  # node 12 lub 16
+  using: "node16"
+  # plik js, który się odpala przed main
+  # pre: "pre.js"
+  # główny plik js, który się odpala
+  main: "main.js"
+  # plik js, który się odpala po main
+  # post: "post.js"
