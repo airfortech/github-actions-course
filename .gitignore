@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 notatki.yml
+/notatki
 
 /test-results/
 /playwright-report/
