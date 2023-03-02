@@ -11,6 +11,8 @@ runs:
   using: composite
 
   steps:
+    - name: test input
+      run: echo "input - ${{ inputs.environment }}"
     - name: create test .env
       if: inputs.environment == "test"
       run: echo "create test env"
