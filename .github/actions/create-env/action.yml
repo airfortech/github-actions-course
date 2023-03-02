@@ -14,11 +14,11 @@ runs:
     - name: test input
       run: echo "input - ${{ inputs.environment }}"
       shell: bash
-    # - name: create test .env
-    #   if: inputs.environment == "test"
-    #   run: echo "create test env"
-    #   shell: bash
-    # - name: create production .env
-    #   if: inputs.environment == "production"
-    #   run: echo "create production env"
-    #   shell: bash
+    - name: create test .env
+      if: inputs.environment == 'test'
+      run: echo "create test env"
+      shell: bash
+    - name: create production .env
+      if: inputs.environment == 'production'
+      run: echo "create production env"
+      shell: bash
