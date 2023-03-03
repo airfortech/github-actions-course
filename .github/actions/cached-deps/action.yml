@@ -27,6 +27,9 @@ runs:
       with:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: check files
+      run: ls -al
+      shell: bash
     - name: Install dependencies
       id: install
       # pominięcie kroku jeśli nie ma cachu lub caching == false
